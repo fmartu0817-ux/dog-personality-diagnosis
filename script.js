@@ -217,14 +217,18 @@ function answerAndNext(ans){
   saveState(state);
 
   // 次へ
-  if(state.index >= QUESTIONS.length - 1){
-    // 最後 → タイプ算出 → ブログへ
-    const scores = calcLetterScores();
-    const type = buildType(scores);
-    const url = TYPE_URL[type] || "https://everyday-dog.com/";
-    showFinishAndGo(url);
-    return;
-  }
+if(state.index >= QUESTIONS.length - 1){
+  // 最後 → タイプ算出 → ブログへ
+  const scores = calcLetterScores();
+  const type = buildType(scores);
+  const url = TYPE_URL[type] || "https://everyday-dog.com/";
+
+  // ★ここ追加：診断完了したら保存データを消す（次回は最初からになる）
+  localStorage.removeItem(STORAGE_KEY);
+
+  showFinishAndGo(url);
+  return;
+}
 
   state.index++;
   saveState(state);
