@@ -3,70 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>犬の16タイプ診断</title>
+  <title>犬の16タイプ性格診断</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="app">
     <header class="header">
-      <div class="title-row">
-        <h1>犬の16タイプ診断</h1>
-        <button id="resetBtn" class="ghost">最初からやり直す</button>
-      </div>
+      <h1 class="title">犬の16タイプ性格診断</h1>
 
-      <div class="progress-wrap">
-        <div class="progress-top">
-          <div id="progressText" class="progress-text">進捗 0% / 0/27問</div>
-          <div class="progress-hint">タップで選択（あとから変更可）</div>
-        </div>
-        <div class="progress-bar">
-          <div id="progressFill" class="progress-fill"></div>
-        </div>
-      </div>
+      <!-- 足跡進捗（%表示なし） -->
+      <div class="paws" id="paws" aria-label="進捗"></div>
+
+      <button id="resetBtn" class="reset">最初からやり直す</button>
     </header>
 
+    <!-- 質問画面 -->
     <section id="quizView" class="card">
-      <div class="q-head">
-        <div class="q-no" id="qNo">Q1</div>
-        <div class="q-text" id="qText"></div>
-      </div>
+      <div class="question" id="qText"></div>
 
       <div class="choices">
-        <button class="choice" data-value="yes" id="btnYes">はい</button>
-        <button class="choice" data-value="no" id="btnNo">いいえ</button>
-        <button class="choice" data-value="neutral" id="btnNeutral">どちらともいえない</button>
+        <button class="choice" id="btnYes">はい</button>
+        <button class="choice" id="btnNo">いいえ</button>
+        <button class="choice" id="btnNeutral">どちらでもない</button>
       </div>
 
+      <!-- 戻るだけ残す -->
       <div class="nav">
-        <button id="prevBtn" class="ghost">← 前へ</button>
-        <button id="nextBtn" class="primary">次へ →</button>
-      </div>
-
-      <div class="footer-mini">
-        <div id="unansweredText">未回答 27問</div>
+        <button id="prevBtn" class="prev">← ひとつ戻る</button>
       </div>
     </section>
 
-    <section id="resultView" class="card hidden">
-      <h2>診断結果</h2>
-
-      <div class="result-box">
-        <div class="result-code" id="resultCode">----</div>
-        <div class="result-name" id="resultName"></div>
-        <div class="result-group" id="resultGroup"></div>
-      </div>
-
-      <div class="axis-box">
-        <h3>スコア内訳</h3>
-        <div id="axisDetails" class="axis-details"></div>
-        <p class="note">
-          ※同点の場合は I / S / F / J 側に寄せて判定（安全側）
-        </p>
-      </div>
-
-      <div class="nav">
-        <button id="backToQuizBtn" class="ghost">← 回答に戻る</button>
-      </div>
+    <!-- 最後だけ一瞬出る（自動でブログへ飛ぶ） -->
+    <section id="finishView" class="card hidden">
+      <div class="finishTitle">診断結果！</div>
+      <div class="finishSub">結果ページへ移動します…</div>
+      <button id="goBtn" class="go">結果を見る ▶︎</button>
     </section>
   </main>
 
